@@ -1,0 +1,85 @@
+---
+title: "Meine Master Arbeit"
+author: Aweseome Boii
+date: "30.09.2022"
+documentclass: book
+classoption:
+  - a4paper
+  - oneside
+monofont: Menlo
+fontfamily: lmodern
+fontsize: 12pt
+numbersections: yes
+output: 
+  pdf_document:
+    latex_engine: lualatex
+    keep_tex: yes
+    citation_package: natbib
+    includes:
+      md_extensions: +raw_attribute
+      in_header: "preamble.tex"
+      before_body: "frontpage.tex"
+geometry: "left=25mm,right=20mm,top=25mm,bottom=25mm"
+---
+<!-- Falls das Datum das heutige sein soll:
+date: '`r format(Sys.Date(), "%d\\.%m\\.%Y")`'
+-->
+
+```{r echo=FALSE}
+source('setup.R')
+```
+
+\newpage
+
+\frontmatter
+
+# Deklaration {- .unlisted}
+
+I hereby declare and confirm that this thesis is entirely the result of my own original work. Where other sources of information have been used, they have been indicated as such and properly acknowledged. I further declare that this or similar work has not been submitted for credit elsewhere.
+
+\vspace{30pt}
+
+\begin{tabu} to \linewidth {>{}X>{\centering}X}
+ & \\
+Augsburg, \thedate & \makebox[1\linewidth]{\dotfill}\\
+ & {\small \textit{\theauthor}}\\
+\end{tabu}
+
+# Kurzzusammenfassung {- .unlisted}
+
+In many situations, ranking agents or items based on their performance within groups is of big interest. While it is possible to utilize power indexes from cooperative game theory to solve such tasks, they require every coalition to have a numerical value attached to them. Trying to factor in all information that contributes to these values can be an impossible task in real-life complex systems. Social rankings build a framework that provides remedy to these complex structures by solely relying on the ordinal ranking of coalitions, through which a power relation between elements can be established.
+
+Because the concept of social ranking solutions has been introduced only recently, no general-purpose software exists to calculate these yet. With the goal of developing an R package to solve these problems, this thesis looks to build a foundational understanding of relations, orders, and solutions, before delving into the package implementation itself.
+
+<!-- Sämtliche Tabellen-Zeugs, jedes fängt auf einer neuen Seite an -->
+\tableofcontents
+\listoffigures
+\listoftables
+\listoflistings
+
+\mainmatter
+
+<!-- Welche Dokumente sollen hier eingefügt werden? -->
+```{r, child=c('01_Introduction.Rmd', '02_Something.Rmd', '03_More.Rmd', '04_Implementation.Rmd', '05_Discussion.Rmd', '06_Conclusion.Rmd')}
+
+```
+
+
+\backmatter
+
+<!-- Bibliographie -->
+<!-- \phantomsection stellt sicher, dass die Bibliographie auch im Inhaltsverzeichnis erscheint -->
+\newpage
+\phantomsection\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{refs.bib}
+
+<!-- Appendix soll den Buchstaben A vorne dran haben -->
+\setcounter{chapter}{1}
+\renewcommand{\thechapter}{\Alph{chapter}}
+\renewcommand{\thesection}{A.\arabic{section}}
+\renewcommand{\thesubsection}{A.\arabic{section}.\arabic{subsection}}
+
+<!-- Welche Dokumente sollen hier eingefügt werden? -->
+```{r, child=c('99_Appendix.Rmd')}
+
+```

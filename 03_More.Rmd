@@ -1,0 +1,38 @@
+---
+title: "Meine Master Arbeit"
+author: Aweseome Boii
+date: '30.09.2022'
+documentclass: book
+classoption:
+  - a4paper
+  - oneside
+monofont: Menlo
+fontfamily: lmodern
+fontsize: 12pt
+numbersections: yes
+output: 
+  pdf_document:
+    latex_engine: lualatex
+    keep_tex: yes
+    citation_package: natbib
+    includes:
+      md_extensions: +raw_attribute
+      in_header: "preamble.tex"
+      before_body: "frontpage.tex"
+geometry: "left=25mm,right=20mm,top=25mm,bottom=25mm"
+---
+
+```{r echo=FALSE}
+source('setup.R')
+```
+
+# Mehr
+
+Noch mehr Formel in (\ref{eq:abc}).^[Diese Formel ist nicht ernst zu nehmen.]
+
+\begin{equation}\label{eq:abc}
+a^2 + b^2 = c^2
+\end{equation}
+
+
+

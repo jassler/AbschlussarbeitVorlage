@@ -1,0 +1,75 @@
+% Überschriften, Inhaltsverzeichnisse, etc. auf Deutsch
+\usepackage[ngerman]{babel}
+
+% Text unter Abbildungen, Tabellen, etc.
+\usepackage[indention=1cm,format=plain,textformat=simple,labelformat=simple,labelfont=footnotesize,textfont=footnotesize,position=bottom]{caption}
+\captionsetup[table]{position=below}
+
+% Schönere Tabellen
+\usepackage{booktabs}
+
+% Bessere Mathe-Funktionalitäten
+% Fixt ein paar Mathe-Renderprobleme bei amsmath
+\usepackage{mathtools}
+
+% Hier um Spalten einer Tabelle fett zu machen
+\usepackage{array}
+\usepackage{tabu}
+
+% Titel, Author, Datum kann mit \thetitle, \theauthor, \thedate aufgerufen werden
+\usepackage{titling}
+
+% Kopf- und Fußzeile
+\usepackage{fancyhdr}
+% Kopf- und Fußzeile für Abstrakt, Deklaration und Inhaltsverzeichnis
+\pagestyle{fancy}
+\fancyhf{} % alles bereinigen
+\fancyhead[L]{\nouppercase{\leftmark}} % Kopfzeile links
+\fancyhead[C]{} %zentrierte Kopfzeile
+\fancyhead[R]{\thepage} %Kopfzeile rechts
+\setlength{\headheight}{15pt}
+\renewcommand{\headrulewidth}{0.4pt} %obere Trennlinie
+
+\fancypagestyle{plain}{%
+  \fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
+  \fancyhead[R]{\thepage} %Kopfzeile rechts
+}
+
+
+% Layout bzw. Text für Kapitelüberschriften
+\usepackage{titlesec}
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries}{\thechapter\ }{1em}{}
+
+% Listing Captions
+\usepackage{floatrow}
+\DeclareNewFloatType{listing}{placement=H, fileext=lsts, name=}
+\captionsetup{options=listing}
+\renewcommand{\thelisting}{\thechapter.\arabic{listing}}
+\makeatletter
+\@addtoreset{listing}{chapter}
+\makeatother
+\newcommand{\codeblock}[2]{\refstepcounter{listing}\label{#1}Listing~\thelisting: #2\vspace{-10pt}}
+\newcommand{\lstbeg}[2]{\begingroup\begin{center}\codeblock{#1}{#2}\phantomsection\addcontentsline{lsts}{figure}{Listing \thelisting: #2}\end{center}}
+\newcommand{\lstend}{\endgroup}
+
+% Inhaltsverzeichnis für Listings
+\makeatletter
+%\newcommand\listingname{Listings}
+\newcommand\listoflistings{%
+  \chapter*{Listings}\@starttoc{lsts}}
+\makeatother
+
+% 1,5-facher Zeilenabstand
+\usepackage[onehalfspacing]{setspace}
+% Zeileneinzug nach jedem Paragraphen
+\setlength{\parindent}{15pt}
+% Zusätzlicher Zeilenabstand nach jedem Paragraphen
+\setlength{\parskip}{0pt}
+
+% Zitierformat
+\usepackage{natbib}
+\setcitestyle{numbers}
+\setcitestyle{square}
+
+% maketitle soll nicht angezeigt werden, Titelseite wird mit frontpage.tex generiert
+\AtBeginDocument{\let\maketitle\relax}
